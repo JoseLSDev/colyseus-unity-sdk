@@ -18,25 +18,25 @@ public class ServerSettingsEditor : Editor
     private float buttonWidth = 250;
     private float sectionSpacer = 20;
 
-	private static string IconDirectory = Path.Combine("Runtime", "Editor Default Resources", "Icons", "ColyseusSettings");
+	private static string IconDirectory = Path.Combine("Runtime", "Editor Default Resources", "Icons");
 
 	void OnEnable()
-    {
-        url = serializedObject.FindProperty("colyseusServerAddress");
-        port = serializedObject.FindProperty("colyseusServerPort");
-        secureProto= serializedObject.FindProperty("useSecureProtocol");
-        requestHeaders = serializedObject.FindProperty("_requestHeaders");
+	{
+		url = serializedObject.FindProperty("colyseusServerAddress");
+		port = serializedObject.FindProperty("colyseusServerPort");
+		secureProto = serializedObject.FindProperty("useSecureProtocol");
+		requestHeaders = serializedObject.FindProperty("_requestHeaders");
 
 		string fullAssetDirectory = Path.Combine(Application.dataPath, "Colyseus", IconDirectory);
 
 		GUIContent content = null;
 		if (Directory.Exists(fullAssetDirectory))
 		{
-			content = EditorGUIUtility.IconContent(fullAssetDirectory);
+			content = EditorGUIUtility.IconContent(Path.Combine(fullAssetDirectory, "ColyseusSettings.png"));
 		}
 		else
 		{
-			content = EditorGUIUtility.IconContent(Path.Combine("Packages", "io.colyseus.sdk", IconDirectory));
+			content = EditorGUIUtility.IconContent(Path.Combine("Packages", "io.colyseus.sdk", IconDirectory, "ColyseusSettings.png"));
 		}
 
 		if (content != null)
@@ -45,7 +45,7 @@ public class ServerSettingsEditor : Editor
 		}
 	}
 
-    public override void OnInspectorGUI()
+	public override void OnInspectorGUI()
     {
         serializedObject.Update();
         
