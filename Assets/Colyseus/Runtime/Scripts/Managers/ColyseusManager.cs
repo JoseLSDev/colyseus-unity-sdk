@@ -62,7 +62,8 @@ namespace Colyseus
         /// </summary>
         protected virtual void OnDestroy()
         {
-        }
+			Instance = default(T);
+		}
 
         /// <summary>
         /// <see cref="MonoBehaviour"/> callback when the script instance is being loaded.
